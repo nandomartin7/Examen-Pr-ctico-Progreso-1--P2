@@ -658,3 +658,22 @@ Caused by: com.mysql.cj.exceptions.UnableToConnectException: Public Key Retrieva
 	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:632) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
 	... 28 more
 2025-10-30 20:58:47 WARN  org.apache.camel.component.file.GenericFileOnCompletion - Rollback file strategy: org.apache.camel.component.file.strategy.GenericFileRenameProcessStrategy@3f49af43 for file: GenericFile[sensores.csv]
+2025-10-30 21:00:47 INFO  org.apache.camel.main.MainSupport - Apache Camel (Main) 4.6.0 is starting
+2025-10-30 21:00:47 INFO  org.apache.camel.impl.engine.AbstractCamelContext - Apache Camel 4.6.0 (camel-1) is starting
+2025-10-30 21:00:47 INFO  org.apache.camel.main.BaseMainSupport - Property-placeholders summary
+2025-10-30 21:00:47 INFO  org.apache.camel.main.BaseMainSupport -     [application.properties]       agrotech.inbox=./inbox
+2025-10-30 21:00:47 INFO  org.apache.camel.main.BaseMainSupport -     [application.properties]       agrotech.outbox=./outbox
+2025-10-30 21:00:47 INFO  org.apache.camel.impl.engine.AbstractCamelContext - Routes startup (total:4)
+2025-10-30 21:00:47 INFO  org.apache.camel.impl.engine.AbstractCamelContext -     Started file-transfer (file://./inbox)
+2025-10-30 21:00:47 INFO  org.apache.camel.impl.engine.AbstractCamelContext -     Started agro-analyzer (direct://agro.intake)
+2025-10-30 21:00:47 INFO  org.apache.camel.impl.engine.AbstractCamelContext -     Started rpc-servidor (direct://rpc.obtenerUltimo)
+2025-10-30 21:00:47 INFO  org.apache.camel.impl.engine.AbstractCamelContext -     Started rpc-cliente (direct://solicitarLectura)
+2025-10-30 21:00:47 INFO  org.apache.camel.impl.engine.AbstractCamelContext - Apache Camel 4.6.0 (camel-1) started in 79ms (build:0ms init:0ms start:79ms)
+2025-10-30 21:00:55 INFO  file-transfer - [FILE] Leyendo sensores.csv
+2025-10-30 21:00:55 INFO  agro-analyzer - [DB] Insertada lectura en MySQL
+2025-10-30 21:00:55 INFO  file-transfer - [FILE] Fila enviada a AgroAnalyzer: INSERT INTO lecturas (id_sensor, fecha, humedad, temperatura) VALUES ('S001','2025-05-22 00:00:00',45.0,26.4)
+2025-10-30 21:00:55 INFO  agro-analyzer - [DB] Insertada lectura en MySQL
+2025-10-30 21:00:55 INFO  file-transfer - [FILE] Fila enviada a AgroAnalyzer: INSERT INTO lecturas (id_sensor, fecha, humedad, temperatura) VALUES ('S002','2025-05-22 00:00:00',50.0,25.1)
+2025-10-30 21:00:55 INFO  agro-analyzer - [DB] Insertada lectura en MySQL
+2025-10-30 21:00:55 INFO  file-transfer - [FILE] Fila enviada a AgroAnalyzer: INSERT INTO lecturas (id_sensor, fecha, humedad, temperatura) VALUES ('S003','2025-05-22 00:00:00',47.0,27.3)
+2025-10-30 21:00:55 INFO  file-transfer - [FILE] Archivo sensores.csv movido a outbox/
