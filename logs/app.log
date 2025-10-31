@@ -1,0 +1,660 @@
+2025-10-30 20:48:22 INFO  org.apache.camel.main.MainSupport - Apache Camel (Main) 4.6.0 is starting
+2025-10-30 20:48:22 INFO  org.apache.camel.impl.engine.AbstractCamelContext - Apache Camel 4.6.0 (camel-1) is starting
+2025-10-30 20:48:23 INFO  org.apache.camel.main.BaseMainSupport - Property-placeholders summary
+2025-10-30 20:48:23 INFO  org.apache.camel.main.BaseMainSupport -     [application.properties]       agrotech.inbox=./inbox
+2025-10-30 20:48:23 INFO  org.apache.camel.main.BaseMainSupport -     [application.properties]       agrotech.outbox=./outbox
+2025-10-30 20:48:23 INFO  org.apache.camel.impl.engine.AbstractCamelContext - Routes startup (total:4)
+2025-10-30 20:48:23 INFO  org.apache.camel.impl.engine.AbstractCamelContext -     Started file-transfer (file://./inbox)
+2025-10-30 20:48:23 INFO  org.apache.camel.impl.engine.AbstractCamelContext -     Started agro-analyzer (direct://agro.intake)
+2025-10-30 20:48:23 INFO  org.apache.camel.impl.engine.AbstractCamelContext -     Started rpc-servidor (direct://rpc.obtenerUltimo)
+2025-10-30 20:48:23 INFO  org.apache.camel.impl.engine.AbstractCamelContext -     Started rpc-cliente (direct://solicitarLectura)
+2025-10-30 20:48:23 INFO  org.apache.camel.impl.engine.AbstractCamelContext - Apache Camel 4.6.0 (camel-1) started in 81ms (build:0ms init:0ms start:81ms)
+2025-10-30 20:48:34 INFO  file-transfer - [FILE] Leyendo sensores.csv
+2025-10-30 20:48:34 ERROR org.apache.camel.processor.errorhandler.DefaultErrorHandler - Failed delivery for (MessageId: F11C190CEB5EC23-0000000000000000 on ExchangeId: F11C190CEB5EC23-0000000000000000). Exhausted after delivery attempt: 1 caught: org.apache.camel.InvalidPayloadException: No body available of type: java.lang.String but has type: org.apache.camel.component.file.GenericFile on: sensores.csv. Caused by: No type converter available to convert from type: org.apache.camel.component.file.GenericFile to the required type: java.lang.String. Exchange[]. Caused by: [org.apache.camel.NoTypeConversionAvailableException - No type converter available to convert from type: org.apache.camel.component.file.GenericFile to the required type: java.lang.String]
+
+Message History (source location and message history is disabled)
+---------------------------------------------------------------------------------------------------------------------------------------
+Source                                   ID                             Processor                                          Elapsed (ms)
+                                         file-transfer/file-transfer    from[file://./inbox?include=.*%5C.csv&move=.%2Fout           15
+	...
+                                         file-transfer/convertBodyTo1   convertBodyTo[java.lang.String]                               0
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------
+org.apache.camel.InvalidPayloadException: No body available of type: java.lang.String but has type: org.apache.camel.component.file.GenericFile on: sensores.csv. Caused by: No type converter available to convert from type: org.apache.camel.component.file.GenericFile to the required type: java.lang.String. Exchange[]. Caused by: [org.apache.camel.NoTypeConversionAvailableException - No type converter available to convert from type: org.apache.camel.component.file.GenericFile to the required type: java.lang.String]
+	at org.apache.camel.support.MessageSupport.getMandatoryBody(MessageSupport.java:128) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.processor.ConvertBodyProcessor.process(ConvertBodyProcessor.java:118) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.processor.ConvertBodyProcessor.process(ConvertBodyProcessor.java:159) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.errorhandler.RedeliveryErrorHandler$SimpleTask.handleFirst(RedeliveryErrorHandler.java:462) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.errorhandler.RedeliveryErrorHandler$SimpleTask.run(RedeliveryErrorHandler.java:438) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.doRun(DefaultReactiveExecutor.java:199) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.executeReactiveWork(DefaultReactiveExecutor.java:189) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.tryExecuteReactiveWork(DefaultReactiveExecutor.java:166) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.schedule(DefaultReactiveExecutor.java:148) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor.scheduleMain(DefaultReactiveExecutor.java:59) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:163) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.CamelInternalProcessor.processNonTransacted(CamelInternalProcessor.java:355) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.CamelInternalProcessor.process(CamelInternalProcessor.java:331) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:491) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:244) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:205) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:206) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.ScheduledPollConsumer.run(ScheduledPollConsumer.java:119) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[?:?]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358) ~[?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.lang.Thread.run(Thread.java:1583) [?:?]
+Caused by: org.apache.camel.NoTypeConversionAvailableException: No type converter available to convert from type: org.apache.camel.component.file.GenericFile to the required type: java.lang.String
+	at org.apache.camel.impl.converter.CoreTypeConverterRegistry.mandatoryConvertTo(CoreTypeConverterRegistry.java:189) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.MessageSupport.getMandatoryBody(MessageSupport.java:126) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	... 23 more
+2025-10-30 20:48:34 WARN  org.apache.camel.component.file.GenericFileOnCompletion - Rollback file strategy: org.apache.camel.component.file.strategy.GenericFileRenameProcessStrategy@4e57be3d for file: GenericFile[sensores.csv]
+2025-10-30 20:51:48 INFO  org.apache.camel.main.MainSupport - Apache Camel (Main) 4.6.0 is starting
+2025-10-30 20:51:49 INFO  org.apache.camel.impl.engine.AbstractCamelContext - Apache Camel 4.6.0 (camel-1) is starting
+2025-10-30 20:51:49 INFO  org.apache.camel.main.BaseMainSupport - Property-placeholders summary
+2025-10-30 20:51:49 INFO  org.apache.camel.main.BaseMainSupport -     [application.properties]       agrotech.inbox=./inbox
+2025-10-30 20:51:49 INFO  org.apache.camel.main.BaseMainSupport -     [application.properties]       agrotech.outbox=./outbox
+2025-10-30 20:51:49 INFO  org.apache.camel.impl.engine.AbstractCamelContext - Routes startup (total:4)
+2025-10-30 20:51:49 INFO  org.apache.camel.impl.engine.AbstractCamelContext -     Started file-transfer (file://./inbox)
+2025-10-30 20:51:49 INFO  org.apache.camel.impl.engine.AbstractCamelContext -     Started agro-analyzer (direct://agro.intake)
+2025-10-30 20:51:49 INFO  org.apache.camel.impl.engine.AbstractCamelContext -     Started rpc-servidor (direct://rpc.obtenerUltimo)
+2025-10-30 20:51:49 INFO  org.apache.camel.impl.engine.AbstractCamelContext -     Started rpc-cliente (direct://solicitarLectura)
+2025-10-30 20:51:49 INFO  org.apache.camel.impl.engine.AbstractCamelContext - Apache Camel 4.6.0 (camel-1) started in 94ms (build:0ms init:0ms start:94ms)
+2025-10-30 20:52:29 INFO  file-transfer - [FILE] Leyendo sensores.csv
+2025-10-30 20:52:29 ERROR org.apache.camel.processor.errorhandler.DefaultErrorHandler - Failed delivery for (MessageId: 79F47888DBA3495-0000000000000001 on ExchangeId: 79F47888DBA3495-0000000000000001). Exhausted after delivery attempt: 1 caught: java.lang.NumberFormatException: For input string: "null"
+
+Message History (source location and message history is disabled)
+---------------------------------------------------------------------------------------------------------------------------------------
+Source                                   ID                             Processor                                          Elapsed (ms)
+                                         file-transfer/file-transfer    from[file://./inbox?include=.*%5C.csv&move=.%2Fout           97
+	...
+                                         agro-analyzer/process2         Processor@0x46cf05f7                                          0
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------
+java.lang.NumberFormatException: For input string: "null"
+	at jdk.internal.math.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:2054) ~[?:?]
+	at jdk.internal.math.FloatingDecimal.parseDouble(FloatingDecimal.java:110) ~[?:?]
+	at java.lang.Double.parseDouble(Double.java:792) ~[?:?]
+	at java.lang.Double.valueOf(Double.java:755) ~[?:?]
+	at com.agrotech.routes.AgroAnalyzerRoute.lambda$configure$0(AgroAnalyzerRoute.java:21) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.processor.DelegateSyncProcessor.process(DelegateSyncProcessor.java:65) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.errorhandler.RedeliveryErrorHandler$SimpleTask.handleFirst(RedeliveryErrorHandler.java:462) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.errorhandler.RedeliveryErrorHandler$SimpleTask.run(RedeliveryErrorHandler.java:438) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.doRun(DefaultReactiveExecutor.java:199) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.executeReactiveWork(DefaultReactiveExecutor.java:189) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.tryExecuteReactiveWork(DefaultReactiveExecutor.java:166) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.schedule(DefaultReactiveExecutor.java:148) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor.scheduleMain(DefaultReactiveExecutor.java:59) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:163) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.CamelInternalProcessor.processNonTransacted(CamelInternalProcessor.java:355) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.CamelInternalProcessor.process(CamelInternalProcessor.java:331) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:491) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:244) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:205) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:206) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.ScheduledPollConsumer.run(ScheduledPollConsumer.java:119) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[?:?]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358) ~[?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.lang.Thread.run(Thread.java:1583) [?:?]
+2025-10-30 20:52:29 ERROR org.apache.camel.processor.errorhandler.DefaultErrorHandler - Failed delivery for (MessageId: 79F47888DBA3495-0000000000000002 on ExchangeId: 79F47888DBA3495-0000000000000002). Exhausted after delivery attempt: 1 caught: java.lang.NumberFormatException: For input string: "null"
+
+Message History (source location and message history is disabled)
+---------------------------------------------------------------------------------------------------------------------------------------
+Source                                   ID                             Processor                                          Elapsed (ms)
+                                         file-transfer/file-transfer    from[file://./inbox?include=.*%5C.csv&move=.%2Fout          115
+	...
+                                         agro-analyzer/process2         Processor@0x46cf05f7                                          0
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------
+java.lang.NumberFormatException: For input string: "null"
+	at jdk.internal.math.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:2054) ~[?:?]
+	at jdk.internal.math.FloatingDecimal.parseDouble(FloatingDecimal.java:110) ~[?:?]
+	at java.lang.Double.parseDouble(Double.java:792) ~[?:?]
+	at java.lang.Double.valueOf(Double.java:755) ~[?:?]
+	at com.agrotech.routes.AgroAnalyzerRoute.lambda$configure$0(AgroAnalyzerRoute.java:21) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.processor.DelegateSyncProcessor.process(DelegateSyncProcessor.java:65) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.errorhandler.RedeliveryErrorHandler$SimpleTask.handleFirst(RedeliveryErrorHandler.java:462) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.errorhandler.RedeliveryErrorHandler$SimpleTask.run(RedeliveryErrorHandler.java:438) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.doRun(DefaultReactiveExecutor.java:199) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.executeReactiveWork(DefaultReactiveExecutor.java:189) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.tryExecuteReactiveWork(DefaultReactiveExecutor.java:166) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.schedule(DefaultReactiveExecutor.java:148) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor.scheduleMain(DefaultReactiveExecutor.java:59) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:163) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.CamelInternalProcessor.processNonTransacted(CamelInternalProcessor.java:355) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.CamelInternalProcessor.process(CamelInternalProcessor.java:331) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:491) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:244) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:205) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:206) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.ScheduledPollConsumer.run(ScheduledPollConsumer.java:119) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[?:?]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358) ~[?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.lang.Thread.run(Thread.java:1583) [?:?]
+2025-10-30 20:52:29 ERROR org.apache.camel.processor.errorhandler.DefaultErrorHandler - Failed delivery for (MessageId: 79F47888DBA3495-0000000000000003 on ExchangeId: 79F47888DBA3495-0000000000000003). Exhausted after delivery attempt: 1 caught: java.lang.NumberFormatException: For input string: "null"
+
+Message History (source location and message history is disabled)
+---------------------------------------------------------------------------------------------------------------------------------------
+Source                                   ID                             Processor                                          Elapsed (ms)
+                                         file-transfer/file-transfer    from[file://./inbox?include=.*%5C.csv&move=.%2Fout          119
+	...
+                                         agro-analyzer/process2         Processor@0x46cf05f7                                          0
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------
+java.lang.NumberFormatException: For input string: "null"
+	at jdk.internal.math.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:2054) ~[?:?]
+	at jdk.internal.math.FloatingDecimal.parseDouble(FloatingDecimal.java:110) ~[?:?]
+	at java.lang.Double.parseDouble(Double.java:792) ~[?:?]
+	at java.lang.Double.valueOf(Double.java:755) ~[?:?]
+	at com.agrotech.routes.AgroAnalyzerRoute.lambda$configure$0(AgroAnalyzerRoute.java:21) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.processor.DelegateSyncProcessor.process(DelegateSyncProcessor.java:65) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.errorhandler.RedeliveryErrorHandler$SimpleTask.handleFirst(RedeliveryErrorHandler.java:462) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.errorhandler.RedeliveryErrorHandler$SimpleTask.run(RedeliveryErrorHandler.java:438) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.doRun(DefaultReactiveExecutor.java:199) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.executeReactiveWork(DefaultReactiveExecutor.java:189) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.tryExecuteReactiveWork(DefaultReactiveExecutor.java:166) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.schedule(DefaultReactiveExecutor.java:148) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor.scheduleMain(DefaultReactiveExecutor.java:59) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:163) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.CamelInternalProcessor.processNonTransacted(CamelInternalProcessor.java:355) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.CamelInternalProcessor.process(CamelInternalProcessor.java:331) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:491) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:244) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:205) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:206) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.ScheduledPollConsumer.run(ScheduledPollConsumer.java:119) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[?:?]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358) ~[?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.lang.Thread.run(Thread.java:1583) [?:?]
+2025-10-30 20:52:29 WARN  org.apache.camel.component.file.GenericFileOnCompletion - Rollback file strategy: org.apache.camel.component.file.strategy.GenericFileRenameProcessStrategy@5302cd04 for file: GenericFile[sensores.csv]
+2025-10-30 20:57:02 INFO  org.apache.camel.impl.engine.AbstractCamelContext - Apache Camel 4.6.0 (camel-1) is shutting down (timeout:45s)
+2025-10-30 20:57:13 INFO  org.apache.camel.main.MainSupport - Apache Camel (Main) 4.6.0 is starting
+2025-10-30 20:57:14 INFO  org.apache.camel.impl.engine.AbstractCamelContext - Apache Camel 4.6.0 (camel-1) is starting
+2025-10-30 20:57:14 INFO  org.apache.camel.main.BaseMainSupport - Property-placeholders summary
+2025-10-30 20:57:14 INFO  org.apache.camel.main.BaseMainSupport -     [application.properties]       agrotech.inbox=./inbox
+2025-10-30 20:57:14 INFO  org.apache.camel.main.BaseMainSupport -     [application.properties]       agrotech.outbox=./outbox
+2025-10-30 20:57:14 INFO  org.apache.camel.impl.engine.AbstractCamelContext - Routes startup (total:4)
+2025-10-30 20:57:14 INFO  org.apache.camel.impl.engine.AbstractCamelContext -     Started file-transfer (file://./inbox)
+2025-10-30 20:57:14 INFO  org.apache.camel.impl.engine.AbstractCamelContext -     Started agro-analyzer (direct://agro.intake)
+2025-10-30 20:57:14 INFO  org.apache.camel.impl.engine.AbstractCamelContext -     Started rpc-servidor (direct://rpc.obtenerUltimo)
+2025-10-30 20:57:14 INFO  org.apache.camel.impl.engine.AbstractCamelContext -     Started rpc-cliente (direct://solicitarLectura)
+2025-10-30 20:57:14 INFO  org.apache.camel.impl.engine.AbstractCamelContext - Apache Camel 4.6.0 (camel-1) started in 87ms (build:0ms init:0ms start:87ms)
+2025-10-30 20:57:20 INFO  file-transfer - [FILE] Leyendo sensores.csv
+2025-10-30 20:57:20 ERROR org.apache.camel.processor.errorhandler.DefaultErrorHandler - Failed delivery for (MessageId: A0F2E613518CFE0-0000000000000001 on ExchangeId: A0F2E613518CFE0-0000000000000001). Exhausted after delivery attempt: 1 caught: java.sql.SQLException: Cannot create PoolableConnectionFactory (Public Key Retrieval is not allowed)
+
+Message History (source location and message history is disabled)
+---------------------------------------------------------------------------------------------------------------------------------------
+Source                                   ID                             Processor                                          Elapsed (ms)
+                                         file-transfer/file-transfer    from[file://./inbox?include=.*%5C.csv&move=.%2Fout          295
+	...
+                                         agro-analyzer/to2              jdbc:dataSource                                               0
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------
+java.sql.SQLException: Cannot create PoolableConnectionFactory (Public Key Retrieval is not allowed)
+	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:636) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.createDataSource(BasicDataSource.java:538) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.getConnection(BasicDataSource.java:714) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.jdbc.DefaultConnectionStrategy.getConnection(DefaultConnectionStrategy.java:28) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.jdbc.JdbcProducer.processingSqlBySettingAutoCommit(JdbcProducer.java:82) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.jdbc.JdbcProducer.process(JdbcProducer.java:69) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.AsyncProcessorConverterHelper$ProcessorToAsyncProcessorBridge.process(AsyncProcessorConverterHelper.java:65) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.SendProcessor.process(SendProcessor.java:208) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.errorhandler.RedeliveryErrorHandler$SimpleTask.handleFirst(RedeliveryErrorHandler.java:462) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.errorhandler.RedeliveryErrorHandler$SimpleTask.run(RedeliveryErrorHandler.java:438) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.doRun(DefaultReactiveExecutor.java:199) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.executeReactiveWork(DefaultReactiveExecutor.java:189) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.tryExecuteReactiveWork(DefaultReactiveExecutor.java:166) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.schedule(DefaultReactiveExecutor.java:148) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor.scheduleMain(DefaultReactiveExecutor.java:59) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:163) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.CamelInternalProcessor.processNonTransacted(CamelInternalProcessor.java:355) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.CamelInternalProcessor.process(CamelInternalProcessor.java:331) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:491) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:244) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:205) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:206) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.ScheduledPollConsumer.run(ScheduledPollConsumer.java:119) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[?:?]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358) ~[?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.lang.Thread.run(Thread.java:1583) [?:?]
+Caused by: java.sql.SQLNonTransientConnectionException: Public Key Retrieval is not allowed
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:102) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:113) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:861) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:449) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:234) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.DriverConnectionFactory.createConnection(DriverConnectionFactory.java:52) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:414) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.validateConnectionFactory(BasicDataSource.java:113) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:632) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	... 28 more
+Caused by: com.mysql.cj.exceptions.UnableToConnectException: Public Key Retrieval is not allowed
+	at jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62) ~[?:?]
+	at java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502) ~[?:?]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:486) ~[?:?]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:52) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:76) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.protocol.a.authentication.CachingSha2PasswordPlugin.nextAuthenticationStep(CachingSha2PasswordPlugin.java:122) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.protocol.a.authentication.CachingSha2PasswordPlugin.nextAuthenticationStep(CachingSha2PasswordPlugin.java:40) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.protocol.a.NativeAuthenticationProvider.proceedHandshakeWithPluggableAuthentication(NativeAuthenticationProvider.java:435) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.protocol.a.NativeAuthenticationProvider.connect(NativeAuthenticationProvider.java:205) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.protocol.a.NativeProtocol.connect(NativeProtocol.java:1340) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:152) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:980) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:851) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:449) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:234) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.DriverConnectionFactory.createConnection(DriverConnectionFactory.java:52) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:414) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.validateConnectionFactory(BasicDataSource.java:113) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:632) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	... 28 more
+2025-10-30 20:57:20 ERROR org.apache.camel.processor.errorhandler.DefaultErrorHandler - Failed delivery for (MessageId: A0F2E613518CFE0-0000000000000002 on ExchangeId: A0F2E613518CFE0-0000000000000002). Exhausted after delivery attempt: 1 caught: java.sql.SQLException: Cannot create PoolableConnectionFactory (Public Key Retrieval is not allowed)
+
+Message History (source location and message history is disabled)
+---------------------------------------------------------------------------------------------------------------------------------------
+Source                                   ID                             Processor                                          Elapsed (ms)
+                                         file-transfer/file-transfer    from[file://./inbox?include=.*%5C.csv&move=.%2Fout          318
+	...
+                                         agro-analyzer/to2              jdbc:dataSource                                               0
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------
+java.sql.SQLException: Cannot create PoolableConnectionFactory (Public Key Retrieval is not allowed)
+	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:636) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.createDataSource(BasicDataSource.java:538) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.getConnection(BasicDataSource.java:714) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.jdbc.DefaultConnectionStrategy.getConnection(DefaultConnectionStrategy.java:28) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.jdbc.JdbcProducer.processingSqlBySettingAutoCommit(JdbcProducer.java:82) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.jdbc.JdbcProducer.process(JdbcProducer.java:69) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.AsyncProcessorConverterHelper$ProcessorToAsyncProcessorBridge.process(AsyncProcessorConverterHelper.java:65) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.SendProcessor.process(SendProcessor.java:208) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.errorhandler.RedeliveryErrorHandler$SimpleTask.handleFirst(RedeliveryErrorHandler.java:462) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.errorhandler.RedeliveryErrorHandler$SimpleTask.run(RedeliveryErrorHandler.java:438) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.doRun(DefaultReactiveExecutor.java:199) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.executeReactiveWork(DefaultReactiveExecutor.java:189) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.tryExecuteReactiveWork(DefaultReactiveExecutor.java:166) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.schedule(DefaultReactiveExecutor.java:148) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor.scheduleMain(DefaultReactiveExecutor.java:59) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:163) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.CamelInternalProcessor.processNonTransacted(CamelInternalProcessor.java:355) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.CamelInternalProcessor.process(CamelInternalProcessor.java:331) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:491) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:244) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:205) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:206) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.ScheduledPollConsumer.run(ScheduledPollConsumer.java:119) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[?:?]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358) ~[?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.lang.Thread.run(Thread.java:1583) [?:?]
+Caused by: java.sql.SQLNonTransientConnectionException: Public Key Retrieval is not allowed
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:102) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:113) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:861) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:449) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:234) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.DriverConnectionFactory.createConnection(DriverConnectionFactory.java:52) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:414) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.validateConnectionFactory(BasicDataSource.java:113) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:632) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	... 28 more
+Caused by: com.mysql.cj.exceptions.UnableToConnectException: Public Key Retrieval is not allowed
+	at jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62) ~[?:?]
+	at java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502) ~[?:?]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:486) ~[?:?]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:52) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:76) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.protocol.a.authentication.CachingSha2PasswordPlugin.nextAuthenticationStep(CachingSha2PasswordPlugin.java:122) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.protocol.a.authentication.CachingSha2PasswordPlugin.nextAuthenticationStep(CachingSha2PasswordPlugin.java:40) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.protocol.a.NativeAuthenticationProvider.proceedHandshakeWithPluggableAuthentication(NativeAuthenticationProvider.java:435) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.protocol.a.NativeAuthenticationProvider.connect(NativeAuthenticationProvider.java:205) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.protocol.a.NativeProtocol.connect(NativeProtocol.java:1340) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:152) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:980) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:851) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:449) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:234) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.DriverConnectionFactory.createConnection(DriverConnectionFactory.java:52) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:414) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.validateConnectionFactory(BasicDataSource.java:113) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:632) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	... 28 more
+2025-10-30 20:57:21 ERROR org.apache.camel.processor.errorhandler.DefaultErrorHandler - Failed delivery for (MessageId: A0F2E613518CFE0-0000000000000003 on ExchangeId: A0F2E613518CFE0-0000000000000003). Exhausted after delivery attempt: 1 caught: java.sql.SQLException: Cannot create PoolableConnectionFactory (Public Key Retrieval is not allowed)
+
+Message History (source location and message history is disabled)
+---------------------------------------------------------------------------------------------------------------------------------------
+Source                                   ID                             Processor                                          Elapsed (ms)
+                                         file-transfer/file-transfer    from[file://./inbox?include=.*%5C.csv&move=.%2Fout          324
+	...
+                                         agro-analyzer/to2              jdbc:dataSource                                               0
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------
+java.sql.SQLException: Cannot create PoolableConnectionFactory (Public Key Retrieval is not allowed)
+	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:636) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.createDataSource(BasicDataSource.java:538) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.getConnection(BasicDataSource.java:714) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.jdbc.DefaultConnectionStrategy.getConnection(DefaultConnectionStrategy.java:28) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.jdbc.JdbcProducer.processingSqlBySettingAutoCommit(JdbcProducer.java:82) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.jdbc.JdbcProducer.process(JdbcProducer.java:69) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.AsyncProcessorConverterHelper$ProcessorToAsyncProcessorBridge.process(AsyncProcessorConverterHelper.java:65) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.SendProcessor.process(SendProcessor.java:208) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.errorhandler.RedeliveryErrorHandler$SimpleTask.handleFirst(RedeliveryErrorHandler.java:462) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.errorhandler.RedeliveryErrorHandler$SimpleTask.run(RedeliveryErrorHandler.java:438) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.doRun(DefaultReactiveExecutor.java:199) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.executeReactiveWork(DefaultReactiveExecutor.java:189) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.tryExecuteReactiveWork(DefaultReactiveExecutor.java:166) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.schedule(DefaultReactiveExecutor.java:148) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor.scheduleMain(DefaultReactiveExecutor.java:59) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:163) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.CamelInternalProcessor.processNonTransacted(CamelInternalProcessor.java:355) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.CamelInternalProcessor.process(CamelInternalProcessor.java:331) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:491) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:244) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:205) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:206) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.ScheduledPollConsumer.run(ScheduledPollConsumer.java:119) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[?:?]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358) ~[?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.lang.Thread.run(Thread.java:1583) [?:?]
+Caused by: java.sql.SQLNonTransientConnectionException: Public Key Retrieval is not allowed
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:102) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:113) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:861) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:449) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:234) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.DriverConnectionFactory.createConnection(DriverConnectionFactory.java:52) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:414) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.validateConnectionFactory(BasicDataSource.java:113) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:632) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	... 28 more
+Caused by: com.mysql.cj.exceptions.UnableToConnectException: Public Key Retrieval is not allowed
+	at jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62) ~[?:?]
+	at java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502) ~[?:?]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:486) ~[?:?]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:52) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:76) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.protocol.a.authentication.CachingSha2PasswordPlugin.nextAuthenticationStep(CachingSha2PasswordPlugin.java:122) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.protocol.a.authentication.CachingSha2PasswordPlugin.nextAuthenticationStep(CachingSha2PasswordPlugin.java:40) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.protocol.a.NativeAuthenticationProvider.proceedHandshakeWithPluggableAuthentication(NativeAuthenticationProvider.java:435) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.protocol.a.NativeAuthenticationProvider.connect(NativeAuthenticationProvider.java:205) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.protocol.a.NativeProtocol.connect(NativeProtocol.java:1340) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:152) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:980) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:851) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:449) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:234) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.DriverConnectionFactory.createConnection(DriverConnectionFactory.java:52) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:414) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.validateConnectionFactory(BasicDataSource.java:113) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:632) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	... 28 more
+2025-10-30 20:57:21 WARN  org.apache.camel.component.file.GenericFileOnCompletion - Rollback file strategy: org.apache.camel.component.file.strategy.GenericFileRenameProcessStrategy@662dbf36 for file: GenericFile[sensores.csv]
+2025-10-30 20:58:42 INFO  org.apache.camel.main.MainSupport - Apache Camel (Main) 4.6.0 is starting
+2025-10-30 20:58:42 INFO  org.apache.camel.impl.engine.AbstractCamelContext - Apache Camel 4.6.0 (camel-1) is starting
+2025-10-30 20:58:42 INFO  org.apache.camel.main.BaseMainSupport - Property-placeholders summary
+2025-10-30 20:58:42 INFO  org.apache.camel.main.BaseMainSupport -     [application.properties]       agrotech.inbox=./inbox
+2025-10-30 20:58:42 INFO  org.apache.camel.main.BaseMainSupport -     [application.properties]       agrotech.outbox=./outbox
+2025-10-30 20:58:42 INFO  org.apache.camel.impl.engine.AbstractCamelContext - Routes startup (total:4)
+2025-10-30 20:58:42 INFO  org.apache.camel.impl.engine.AbstractCamelContext -     Started file-transfer (file://./inbox)
+2025-10-30 20:58:42 INFO  org.apache.camel.impl.engine.AbstractCamelContext -     Started agro-analyzer (direct://agro.intake)
+2025-10-30 20:58:42 INFO  org.apache.camel.impl.engine.AbstractCamelContext -     Started rpc-servidor (direct://rpc.obtenerUltimo)
+2025-10-30 20:58:42 INFO  org.apache.camel.impl.engine.AbstractCamelContext -     Started rpc-cliente (direct://solicitarLectura)
+2025-10-30 20:58:42 INFO  org.apache.camel.impl.engine.AbstractCamelContext - Apache Camel 4.6.0 (camel-1) started in 77ms (build:0ms init:0ms start:77ms)
+2025-10-30 20:58:47 INFO  file-transfer - [FILE] Leyendo sensores.csv
+2025-10-30 20:58:47 ERROR org.apache.camel.processor.errorhandler.DefaultErrorHandler - Failed delivery for (MessageId: 8EB5A6EAE22F66D-0000000000000001 on ExchangeId: 8EB5A6EAE22F66D-0000000000000001). Exhausted after delivery attempt: 1 caught: java.sql.SQLException: Cannot create PoolableConnectionFactory (Public Key Retrieval is not allowed)
+
+Message History (source location and message history is disabled)
+---------------------------------------------------------------------------------------------------------------------------------------
+Source                                   ID                             Processor                                          Elapsed (ms)
+                                         file-transfer/file-transfer    from[file://./inbox?include=.*%5C.csv&move=.%2Fout          207
+	...
+                                         agro-analyzer/to2              jdbc:dataSource                                               0
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------
+java.sql.SQLException: Cannot create PoolableConnectionFactory (Public Key Retrieval is not allowed)
+	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:636) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.createDataSource(BasicDataSource.java:538) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.getConnection(BasicDataSource.java:714) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.jdbc.DefaultConnectionStrategy.getConnection(DefaultConnectionStrategy.java:28) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.jdbc.JdbcProducer.processingSqlBySettingAutoCommit(JdbcProducer.java:82) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.jdbc.JdbcProducer.process(JdbcProducer.java:69) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.AsyncProcessorConverterHelper$ProcessorToAsyncProcessorBridge.process(AsyncProcessorConverterHelper.java:65) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.SendProcessor.process(SendProcessor.java:208) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.errorhandler.RedeliveryErrorHandler$SimpleTask.handleFirst(RedeliveryErrorHandler.java:462) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.errorhandler.RedeliveryErrorHandler$SimpleTask.run(RedeliveryErrorHandler.java:438) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.doRun(DefaultReactiveExecutor.java:199) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.executeReactiveWork(DefaultReactiveExecutor.java:189) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.tryExecuteReactiveWork(DefaultReactiveExecutor.java:166) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.schedule(DefaultReactiveExecutor.java:148) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor.scheduleMain(DefaultReactiveExecutor.java:59) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:163) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.CamelInternalProcessor.processNonTransacted(CamelInternalProcessor.java:355) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.CamelInternalProcessor.process(CamelInternalProcessor.java:331) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:491) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:244) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:205) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:206) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.ScheduledPollConsumer.run(ScheduledPollConsumer.java:119) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[?:?]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358) ~[?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.lang.Thread.run(Thread.java:1583) [?:?]
+Caused by: java.sql.SQLNonTransientConnectionException: Public Key Retrieval is not allowed
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:102) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:113) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:861) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:449) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:234) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.DriverConnectionFactory.createConnection(DriverConnectionFactory.java:52) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:414) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.validateConnectionFactory(BasicDataSource.java:113) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:632) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	... 28 more
+Caused by: com.mysql.cj.exceptions.UnableToConnectException: Public Key Retrieval is not allowed
+	at jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62) ~[?:?]
+	at java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502) ~[?:?]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:486) ~[?:?]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:52) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:76) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.protocol.a.authentication.CachingSha2PasswordPlugin.nextAuthenticationStep(CachingSha2PasswordPlugin.java:122) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.protocol.a.authentication.CachingSha2PasswordPlugin.nextAuthenticationStep(CachingSha2PasswordPlugin.java:40) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.protocol.a.NativeAuthenticationProvider.proceedHandshakeWithPluggableAuthentication(NativeAuthenticationProvider.java:435) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.protocol.a.NativeAuthenticationProvider.connect(NativeAuthenticationProvider.java:205) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.protocol.a.NativeProtocol.connect(NativeProtocol.java:1340) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:152) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:980) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:851) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:449) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:234) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.DriverConnectionFactory.createConnection(DriverConnectionFactory.java:52) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:414) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.validateConnectionFactory(BasicDataSource.java:113) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:632) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	... 28 more
+2025-10-30 20:58:47 ERROR org.apache.camel.processor.errorhandler.DefaultErrorHandler - Failed delivery for (MessageId: 8EB5A6EAE22F66D-0000000000000002 on ExchangeId: 8EB5A6EAE22F66D-0000000000000002). Exhausted after delivery attempt: 1 caught: java.sql.SQLException: Cannot create PoolableConnectionFactory (Public Key Retrieval is not allowed)
+
+Message History (source location and message history is disabled)
+---------------------------------------------------------------------------------------------------------------------------------------
+Source                                   ID                             Processor                                          Elapsed (ms)
+                                         file-transfer/file-transfer    from[file://./inbox?include=.*%5C.csv&move=.%2Fout          226
+	...
+                                         agro-analyzer/to2              jdbc:dataSource                                               0
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------
+java.sql.SQLException: Cannot create PoolableConnectionFactory (Public Key Retrieval is not allowed)
+	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:636) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.createDataSource(BasicDataSource.java:538) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.getConnection(BasicDataSource.java:714) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.jdbc.DefaultConnectionStrategy.getConnection(DefaultConnectionStrategy.java:28) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.jdbc.JdbcProducer.processingSqlBySettingAutoCommit(JdbcProducer.java:82) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.jdbc.JdbcProducer.process(JdbcProducer.java:69) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.AsyncProcessorConverterHelper$ProcessorToAsyncProcessorBridge.process(AsyncProcessorConverterHelper.java:65) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.SendProcessor.process(SendProcessor.java:208) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.errorhandler.RedeliveryErrorHandler$SimpleTask.handleFirst(RedeliveryErrorHandler.java:462) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.errorhandler.RedeliveryErrorHandler$SimpleTask.run(RedeliveryErrorHandler.java:438) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.doRun(DefaultReactiveExecutor.java:199) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.executeReactiveWork(DefaultReactiveExecutor.java:189) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.tryExecuteReactiveWork(DefaultReactiveExecutor.java:166) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.schedule(DefaultReactiveExecutor.java:148) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor.scheduleMain(DefaultReactiveExecutor.java:59) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:163) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.CamelInternalProcessor.processNonTransacted(CamelInternalProcessor.java:355) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.CamelInternalProcessor.process(CamelInternalProcessor.java:331) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:491) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:244) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:205) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:206) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.ScheduledPollConsumer.run(ScheduledPollConsumer.java:119) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[?:?]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358) ~[?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.lang.Thread.run(Thread.java:1583) [?:?]
+Caused by: java.sql.SQLNonTransientConnectionException: Public Key Retrieval is not allowed
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:102) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:113) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:861) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:449) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:234) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.DriverConnectionFactory.createConnection(DriverConnectionFactory.java:52) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:414) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.validateConnectionFactory(BasicDataSource.java:113) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:632) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	... 28 more
+Caused by: com.mysql.cj.exceptions.UnableToConnectException: Public Key Retrieval is not allowed
+	at jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62) ~[?:?]
+	at java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502) ~[?:?]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:486) ~[?:?]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:52) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:76) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.protocol.a.authentication.CachingSha2PasswordPlugin.nextAuthenticationStep(CachingSha2PasswordPlugin.java:122) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.protocol.a.authentication.CachingSha2PasswordPlugin.nextAuthenticationStep(CachingSha2PasswordPlugin.java:40) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.protocol.a.NativeAuthenticationProvider.proceedHandshakeWithPluggableAuthentication(NativeAuthenticationProvider.java:435) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.protocol.a.NativeAuthenticationProvider.connect(NativeAuthenticationProvider.java:205) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.protocol.a.NativeProtocol.connect(NativeProtocol.java:1340) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:152) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:980) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:851) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:449) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:234) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.DriverConnectionFactory.createConnection(DriverConnectionFactory.java:52) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:414) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.validateConnectionFactory(BasicDataSource.java:113) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:632) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	... 28 more
+2025-10-30 20:58:47 ERROR org.apache.camel.processor.errorhandler.DefaultErrorHandler - Failed delivery for (MessageId: 8EB5A6EAE22F66D-0000000000000003 on ExchangeId: 8EB5A6EAE22F66D-0000000000000003). Exhausted after delivery attempt: 1 caught: java.sql.SQLException: Cannot create PoolableConnectionFactory (Public Key Retrieval is not allowed)
+
+Message History (source location and message history is disabled)
+---------------------------------------------------------------------------------------------------------------------------------------
+Source                                   ID                             Processor                                          Elapsed (ms)
+                                         file-transfer/file-transfer    from[file://./inbox?include=.*%5C.csv&move=.%2Fout          233
+	...
+                                         agro-analyzer/to2              jdbc:dataSource                                               0
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------
+java.sql.SQLException: Cannot create PoolableConnectionFactory (Public Key Retrieval is not allowed)
+	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:636) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.createDataSource(BasicDataSource.java:538) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.getConnection(BasicDataSource.java:714) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.jdbc.DefaultConnectionStrategy.getConnection(DefaultConnectionStrategy.java:28) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.jdbc.JdbcProducer.processingSqlBySettingAutoCommit(JdbcProducer.java:82) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.jdbc.JdbcProducer.process(JdbcProducer.java:69) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.AsyncProcessorConverterHelper$ProcessorToAsyncProcessorBridge.process(AsyncProcessorConverterHelper.java:65) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.SendProcessor.process(SendProcessor.java:208) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.errorhandler.RedeliveryErrorHandler$SimpleTask.handleFirst(RedeliveryErrorHandler.java:462) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.errorhandler.RedeliveryErrorHandler$SimpleTask.run(RedeliveryErrorHandler.java:438) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.doRun(DefaultReactiveExecutor.java:199) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.executeReactiveWork(DefaultReactiveExecutor.java:189) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.tryExecuteReactiveWork(DefaultReactiveExecutor.java:166) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor$Worker.schedule(DefaultReactiveExecutor.java:148) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.DefaultReactiveExecutor.scheduleMain(DefaultReactiveExecutor.java:59) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:163) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.CamelInternalProcessor.processNonTransacted(CamelInternalProcessor.java:355) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.impl.engine.CamelInternalProcessor.process(CamelInternalProcessor.java:331) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:491) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:244) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:205) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:206) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.camel.support.ScheduledPollConsumer.run(ScheduledPollConsumer.java:119) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[?:?]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358) ~[?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.lang.Thread.run(Thread.java:1583) [?:?]
+Caused by: java.sql.SQLNonTransientConnectionException: Public Key Retrieval is not allowed
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:102) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:113) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:861) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:449) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:234) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.DriverConnectionFactory.createConnection(DriverConnectionFactory.java:52) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:414) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.validateConnectionFactory(BasicDataSource.java:113) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:632) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	... 28 more
+Caused by: com.mysql.cj.exceptions.UnableToConnectException: Public Key Retrieval is not allowed
+	at jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62) ~[?:?]
+	at java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502) ~[?:?]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:486) ~[?:?]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:52) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:76) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.protocol.a.authentication.CachingSha2PasswordPlugin.nextAuthenticationStep(CachingSha2PasswordPlugin.java:122) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.protocol.a.authentication.CachingSha2PasswordPlugin.nextAuthenticationStep(CachingSha2PasswordPlugin.java:40) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.protocol.a.NativeAuthenticationProvider.proceedHandshakeWithPluggableAuthentication(NativeAuthenticationProvider.java:435) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.protocol.a.NativeAuthenticationProvider.connect(NativeAuthenticationProvider.java:205) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.protocol.a.NativeProtocol.connect(NativeProtocol.java:1340) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:152) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:980) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:851) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:449) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:234) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.DriverConnectionFactory.createConnection(DriverConnectionFactory.java:52) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:414) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.validateConnectionFactory(BasicDataSource.java:113) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:632) ~[evaluacion-practica-agrotech-1.0.0.jar:?]
+	... 28 more
+2025-10-30 20:58:47 WARN  org.apache.camel.component.file.GenericFileOnCompletion - Rollback file strategy: org.apache.camel.component.file.strategy.GenericFileRenameProcessStrategy@3f49af43 for file: GenericFile[sensores.csv]

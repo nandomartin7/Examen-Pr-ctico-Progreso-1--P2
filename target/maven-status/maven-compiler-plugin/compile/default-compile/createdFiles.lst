@@ -1,0 +1,5 @@
+com\agrotech\routes\FileTransferRoute.class
+com\agrotech\App.class
+com\agrotech\service\ServicioAnalitica.class
+com\agrotech\routes\RpcRoutes.class
+com\agrotech\routes\AgroAnalyzerRoute.class
